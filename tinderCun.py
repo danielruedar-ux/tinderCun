@@ -1,47 +1,79 @@
 def registrarPersonas():
-    individuo={}
-    nombre= input("ingrese su nombre")
-    individuo["nombre"]=nombre
-    edad= int(input("ingrese su edad"))
-    individuo["edad"]
-    ciudad= input("ingrese la ciudad donde se encuentra ubicado")
-    individuo["ciudad"]=ciudad
-    genero=input("ingrese su genero")
-    individuo["genero"]=genero
-    generoBuscar=input("ingrese el genero en el que esta interesado")
-    individuo["genero a buscar"]=generoBuscar
-    edadMin=input("ingrese la edad minima para una posible pareja")
-    individuo["edad minima"]=edadMin
-    edadMax=input("ingrese la edad maxima para una posible pareja")
-    individuo["edad maxima"]=edadMax
-    listaIntereses=input("ingrese sus interes y hobbies")
-    individuo["edad maxima"]=listaIntereses
-    distanciaMax=input("ingrese la distancia maxima que esta dispuesta a aceptar(km)")
-    individuo["distancia maxima"]=distanciaMax
+    #Variables
+    individuo = {}
+    nombre = input("como te llamas: ")
+    individuo["Nombre"] = nombre
+
+    edadValida = False
+    while not edadValida:
+        edad = int(input("ingrese su edad: "))
+        if edad < 18:
+            print("no aceptamos menores de 18")
+        else:
+            edadValida = True
+            individuo["Edad"] = edad
+
+    ciudad = input("¿En que ciudad vives?: ")
+    individuo["Ciudad"] = ciudad
+
+    generos = ["hombre", "mujer"]
+    generoValido = False
+    while not generoValido:
+        print(generos)
+        genero = input("Cual es tu genero: ")
+        if genero in generos:
+            individuo["Genero"] = genero
+            generoValido = True
+
+    generoQueBusca = ["hombre", "mujer"]
+    generoValido = False
+    while not generoValido:
+        print(generoQueBusca)
+        genero = input("¿Cual es tu genero de interes?: ")
+        if genero in generoQueBusca:
+            individuo["GeneroInteres"] = genero  
+            generoValido = True
+
+    edadMinima = 18
+    edadMaxima = 100
+    individuo["RangoEdadBuscado"] = (edadMinima, edadMaxima)
+
+    listaDeIntereses = input("ingrese sus intereses(hobbies, signo zodiacal, cosas favoritas)") 
+    individuo["Intereses"] = listaDeIntereses
+
     print(individuo)
     return individuo
-    
 
-   
- def mostrarPersonas(personas):
-     print(personas)
-     
-   
+
+def mostrarPersonas(personas):
+    print(personas)
+
 
 def main():
-    cuntasPersonas=int(input("cauntas personas se van a registrar"))
-    #registrado de personas
-    personas=()
+    opciones = "1. registrar personas  \n2. mostrar las personas \n9. salir"
+    print(opciones)
+    opcion = int(input("digite la opcion que necesita: "))
 
-    for i in range (0,cuantasPersonas):
-        print("i",1)
-        print(personas)
-        personas[i]=registrarPersonas()
+    personas = {}  
 
-        #mostrar personas
+    while opcion != 9:
+        if opcion == 1:
+            cuantasPersonas = int(input("¿Cuantas Personas se van a registrar?: "))
+            for i in range(cuantasPersonas):
+                print("i", i)
+                personas[len(personas)] = registrarPersonas()   
+            mostrarPersonas(personas)
 
-        mostrarPersonas(personas)
-        
+        elif opcion == 2:
+            mostrarPersonas(personas) 
+
+        else:
+            print("Opcion invalida")
+
+        print(opciones)
+        opcion = int(input("digite la opcion que necesita: "))
+
+    print("GRACIAS")  
+
+
 main()
-
-
